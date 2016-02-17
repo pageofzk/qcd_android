@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dap.club.activity.MainActivity">
+    <item
+        android:id="@+id/search"
+        android:title="@string/action_search"
+        android:icon="@drawable/iconfont_sousuo"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:inputType="textCapWords"
+        android:imeOptions="actionSearch"
+        android:iconifiedByDefault="true"/>
+
+    <!--<item-->
+    <!--android:id="@+id/action_feedback"-->
+    <!--android:title="@string/menu_feedback"-->
+    <!--app:showAsAction="never" />-->
+    <!--<item-->
+    <!--android:id="@+id/action_about"-->
+    <!--android:title="@string/menu_about"-->
+    <!--app:showAsAction="never" />-->
+</menu>

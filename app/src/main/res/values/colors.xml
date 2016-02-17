@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ee1d24</color>
+    <color name="window_background">#FFF5F5F5</color>
+    <color name="transparent">#00000000</color>
+    <!--  用于存储标准颜色库。 cp = color pool-->
+    <!-- 内容 -->
+    <color name="cp_cont_a">#FF283345</color>
+    <color name="cp_cont_a_1">#FF232b38</color>
+    <color name="cp_cont_b">#FF313233</color>
+    <color name="cp_cont_b_1">#FF9bafcc</color>
+    <color name="cp_cont_c">#FF7a7c80</color>
+    <color name="cp_cont_c_1">#FF748399</color>
+    <color name="cp_cont_d">#FFabaeb2</color>
+    <color name="cp_cont_d_1">#FF616d80</color>
+    <color name="cp_cont_e">#FFc4c7cc</color>
+    <color name="cp_cont_e_1">#FF4e5766</color>
+    <color name="cp_cont_f">#FF626466</color>
+    <color name="cp_cont_f_1">#FF8899b2</color>
+    <color name="cp_cont_g">#FFffffff</color>
+    <color name="cp_cont_g_1">#FF9bafcc</color>
+    <color name="cp_cont_h">#FFe53917</color>
+    <color name="cp_cont_h_1">#FF99260f</color>
+    <color name="cp_cont_i">#FFffffff</color>
+    <color name="cp_cont_i_1">#B2ffffff</color>
+
+
+    <!-- LINK & TIPS -->
+    <color name="cp_link_tip_a">#FF3385ff</color>
+    <color name="cp_link_tip_a_1">#FF245db2</color>
+    <color name="cp_link_tip_b">#FF292e47</color>
+    <color name="cp_link_tip_b_1">#FF232b38</color>
+    <color name="cp_link_tip_c">#FF3668b2</color>
+    <color name="cp_link_tip_c_1">#FF2a518c</color>
+    <color name="cp_link_tip_d">#FFf55925</color>
+    <color name="cp_link_tip_d_1">#FFb2411b</color>
+    <color name="cp_link_tip_e">#FF1e2133</color>
+    <color name="cp_link_tip_e_1">#FF202733</color>
+
+    <!-- BackGround & Line -->
+    <color name="cp_bg_line_a">#FFc8cacc</color>
+    <color name="cp_bg_line_a_1">#FF161c24</color>
+    <color name="cp_bg_line_b">#FFe1e3e5</color>
+    <color name="cp_bg_line_b_1">#FF192029</color>
+    <color name="cp_bg_line_c">#FFebedf0</color>
+    <color name="cp_bg_line_c_1">#FF202733</color>
+    <color name="cp_bg_line_d">#FFffffff</color>
+    <color name="cp_bg_line_d_1">#FF262f3d</color>
+    <color name="cp_bg_line_e">#FFf5f7fa</color>
+    <color name="cp_bg_line_e_1">#FF232b38</color>
+
+
+    <!-- OTHER -->
+    <color name="cp_other_a">#FF673699</color>
+    <color name="cp_other_a_1">#FF452466</color>
+    <color name="cp_other_b">#FFff5460</color>
+    <color name="cp_other_b_1">#FFb23b43</color>
+    <color name="cp_other_c">#FF26bf85</color>
+    <color name="cp_other_c_1">#FF1b855c</color>
+    <color name="cp_other_d">#FF33aaff</color>
+    <color name="cp_other_d_1">#FF2477b2</color>
+    <color name="cp_other_e">#FFff821c</color>
+    <color name="cp_other_e_1">#FFb25b14</color>
+</resources>
