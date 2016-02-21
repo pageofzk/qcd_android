@@ -88,13 +88,17 @@ public class DetailActivity extends AppCompatActivity {
         //设置字体大小
 //        settings.setTextSize(WebSettings.TextSize.LARGEST);
         //为图片添加放大缩小功能
-        settings.setSupportZoom(true); // 可以缩放
-        settings.setBuiltInZoomControls(true); // 显示放大缩小 controler
+//        settings.setSupportZoom(true); // 可以缩放
+//        settings.setBuiltInZoomControls(true); // 显示放大缩小 controler
 //        mViewPager.loadUrl(detail.getUrl());
 //        mViewPager.loadUrl("http://www.qiongsandai.com");
 //        mViewPager.loadUrl("http://www.angularjs.cn/A2qy");
 //        mViewPager.loadUrl("http://qiongsandai.com/post.html?id=56bffcf132132c0052b37471");
-        mViewPager.loadUrl("http://qicaidang.cn/content/" + detail.getId());
+        if ("lib".equals(detail.getType())) {
+            mViewPager.loadUrl("http://qicaidang.cn/device/" + detail.getId());
+        } else {
+            mViewPager.loadUrl("http://qicaidang.cn/content/" + detail.getId());
+        }
 //        mViewPager.loadData(detail.getHtml(), "text/html; charset=UTF-8", null);
 
         // 购买跳转
