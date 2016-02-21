@@ -86,7 +86,7 @@ public class DetailActivity extends AppCompatActivity {
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
         //设置字体大小
-        settings.setTextSize(WebSettings.TextSize.LARGEST);
+//        settings.setTextSize(WebSettings.TextSize.LARGEST);
         //为图片添加放大缩小功能
         settings.setSupportZoom(true); // 可以缩放
         settings.setBuiltInZoomControls(true); // 显示放大缩小 controler
@@ -94,21 +94,23 @@ public class DetailActivity extends AppCompatActivity {
 //        mViewPager.loadUrl("http://www.qiongsandai.com");
 //        mViewPager.loadUrl("http://www.angularjs.cn/A2qy");
 //        mViewPager.loadUrl("http://qiongsandai.com/post.html?id=56bffcf132132c0052b37471");
-        mViewPager.loadData(detail.getHtml(), "text/html; charset=UTF-8", null);
+        mViewPager.loadUrl("http://qicaidang.cn/content/" + detail.getId());
+//        mViewPager.loadData(detail.getHtml(), "text/html; charset=UTF-8", null);
 
         // 购买跳转
         FloatingActionButton buy = (FloatingActionButton) findViewById(R.id.buy);
-        if ("lib".equals(detail.getType()) || "news".equals(detail.getType())) {
-            buy.hide();
-        }
-        buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DapLog.e(detail.getBuy_url());
-                mViewPager.loadUrl(detail.getBuy_url());
-//                mViewPager.loadUrl(detail.getFrom_url());
-            }
-        });
+        buy.hide();
+//        if ("lib".equals(detail.getType()) || "news".equals(detail.getType())) {
+//            buy.hide();
+//        }
+//        buy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                DapLog.e(detail.getBuy_url());
+//                mViewPager.loadUrl(detail.getBuy_url());
+////                mViewPager.loadUrl(detail.getFrom_url());
+//            }
+//        });
     }
 
         private void JsonToObj(AVObject avObject) {
