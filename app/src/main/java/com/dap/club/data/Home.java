@@ -15,11 +15,21 @@ public class Home {
     private int reply_num;//回复数
     private int repost_num;//转贴数
     private String content;
-    private int type;//类型
+    private String type;//类型
+    private int good;//赞
     private String time;//时间
     private String url;
     private User user;
     private AVObject infos;
+
+
+    public int getGood() {
+        return good;
+    }
+
+    public void setGood(int good) {
+        this.good = good;
+    }
 
     public AVObject getInfos() {
         return infos;
@@ -85,11 +95,11 @@ public class Home {
         this.title = title;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 

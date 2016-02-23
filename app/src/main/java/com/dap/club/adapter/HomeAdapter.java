@@ -89,6 +89,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class NormalViewHolder extends RecyclerView.ViewHolder{
         public TextView detail;
+        public TextView good;
+        public TextView type;
         public TextView title;
         public TextView time;
         public DapDraweeView img;
@@ -98,6 +100,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.root=root;
             title= (TextView) root.findViewById(R.id.frs_lv_title);
             detail= (TextView) root.findViewById(R.id.frs_lv_detail);
+            good= (TextView) root.findViewById(R.id.frs_praise_num);
+            type= (TextView) root.findViewById(R.id.frs_type_text);
 //            time= (TextView) root.findViewById(R.id.frs_lv_reply_time);
             img= (DapDraweeView) root.findViewById(R.id.abstract_img_layout);
         }
@@ -105,6 +109,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public void bindData(Home home){
             title.setText(home.getTitle());
             detail.setText(home.getDetail());
+            good.setText(String.valueOf(home.getGood()));
+            type.setText(home.getType());
             img.setUri(Uri.parse(home.getUrl()));
             DapLog.e(home.getUrl());
         }

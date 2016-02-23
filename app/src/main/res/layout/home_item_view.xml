@@ -139,7 +139,7 @@
                 android:paddingTop="1dp">
 
                 <LinearLayout
-                    android:id="@+id/frs_reply_btn"
+                    android:id="@+id/frs_praise_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="31dp"
                     android:layout_alignParentRight="true"
@@ -147,33 +147,6 @@
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/frs_reply_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_comment_s"/>
-
-                    <TextView
-                        android:id="@+id/frs_reply_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="0"
-                        android:textSize="12sp"
-                        android:textColor="@color/cp_cont_c"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/frs_praise_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="31dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_toLeftOf="@id/frs_reply_btn"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
                     <ImageView
                         android:id="@+id/frs_praise_icon"
                         android:src="@drawable/icon_hand_frs_click"
@@ -189,6 +162,33 @@
                         android:layout_marginLeft="5dp"
                         android:textSize="12sp"
                         android:textColor="@color/cp_cont_c"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/frs_type_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="31dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_toLeftOf="@id/frs_praise_btn"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <!--<ImageView-->
+                    <!--android:id="@+id/frs_reply_icon"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/icon_comment_s"/>-->
+
+                    <TextView
+                        android:id="@+id/frs_type_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="buy"
+                        android:textSize="12sp"
+                        android:textColor="@color/cp_link_tip_a_1"/>
+
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

@@ -23,6 +23,7 @@ import com.dap.club.fragment.BaseListFragment;
 import com.dap.club.fragment.BuyListFragment;
 import com.dap.club.fragment.LibsListFragment;
 import com.dap.club.fragment.NewsListFragment;
+import com.dap.club.fragment.AllListFragment;
 import com.dap.club.util.DapLog;
 
 import java.util.ArrayList;
@@ -72,10 +73,11 @@ public class MainActivity extends AppCompatActivity implements
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new Adapter(getSupportFragmentManager());
+        adapter.addFragment(new AllListFragment(), "首页");
+//        adapter.addFragment(new CheeseListFragment(), "发现");
         adapter.addFragment(new NewsListFragment(), "资讯");
         adapter.addFragment(new BuyListFragment(), "剁手");
         adapter.addFragment(new LibsListFragment(), "器材库");
-//        adapter.addFragment(new CheeseListFragment(), "发现");
         viewPager.setAdapter(adapter);
     }
     private void setupDrawerContent(NavigationView navigationView) {

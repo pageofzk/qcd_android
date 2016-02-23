@@ -23,6 +23,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.dap.club.R;
 import com.dap.club.activity.DetailActivity;
 import com.dap.club.adapter.HomeAdapter;
@@ -88,8 +90,28 @@ public class LibsListFragment extends BaseListFragment implements SwipeRefreshLa
         });
         adapter.setPraiseClick(new HomeAdapter.ClickListener() {
             @Override
-            public void onClick(int data, View v) {
-                DapLog.e("=======================" + data);
+            public void onClick(final int data, View v) {
+                DapLog.e(data + "=======================" +  homes.get(data).getId());
+                if (homes != null && homes.size() > data) {
+                    AVObject post = AVObject.createWithoutData("Lib", homes.get(data).getId());
+                    post.increment("good");
+                    post.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(AVException e) {
+                            if (e == null) {
+                                homes.get(data).setGood(homes.get(data).getGood() + 1);
+                                Worker.postMain(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.setmData(homes);
+                                    }
+                                });
+                            } else {
+                                Log.e("LeanCloud", "Save failed.");
+                            }
+                        }
+                    });
+                }
             }
         });
     }
@@ -111,8 +133,22 @@ public class LibsListFragment extends BaseListFragment implements SwipeRefreshLa
             public void run() {
                 AVQuery<AVObject> query = new AVQuery<AVObject>("Lib");
                 if (searchQuery.length() > 0) {
+                    AVQuery<AVObject> nameQuery = AVQuery.getQuery("Lib");
+                    nameQuery.whereMatches("name", "(?i)" + searchQuery);
+
+                    AVQuery<AVObject> brandQuery = AVQuery.getQuery("Lib");
+                    brandQuery.whereMatches("brand", "(?i)" + searchQuery);
+
+                    AVQuery<AVObject> typeQuery = AVQuery.getQuery("Lib");
+                    typeQuery.whereMatches("type", "(?i)" + searchQuery);
+
+                    List<AVQuery<AVObject>> queries = new ArrayList<AVQuery<AVObject>>();
+                    queries.add(nameQuery);
+                    queries.add(brandQuery);
+                    queries.add(typeQuery);
+                    query = AVQuery.or(queries);
                     // dosearch
-                    query.whereMatches("name", "(?i)" + searchQuery);
+//                    query.whereMatches("name", "(?i)" + searchQuery);
                 }
                 query.limit(LIMITSIZE);
                 query.skip(pageNum * LIMITSIZE);
@@ -147,11 +183,13 @@ public class LibsListFragment extends BaseListFragment implements SwipeRefreshLa
             for (int i = 0; i < avObjects.size(); i++) {
                 Home home = new Home();
                 try {
+                    home.setId(avObjects.get(i).getObjectId());
                     home.setTime(avObjects.get(i).getCreatedAt().toString());
                     String detail = avObjects.get(i).getString("short_info");
                     if (detail.length() > 50) {
                         detail = avObjects.get(i).getString("short_info").substring(0,50) + "...";
                     }
+                    home.setGood(avObjects.get(i).getNumber("good").intValue());
                     home.setDetail(detail);
                     home.setTitle(avObjects.get(i).getString("brand") + avObjects.get(i).getString("name") + avObjects.get(i).getString("type"));
                     home.setUrl(avObjects.get(i).getJSONObject("pic_file").optString("url"));
@@ -220,7 +258,7 @@ public class LibsListFragment extends BaseListFragment implements SwipeRefreshLa
     @Override
     public void search(String query) {
         this.searchQuery=query;
-        DapLog.e("search");
+        DapLog.e("search" + query);
         if (this.isResumed()) {
             pageNum=0;
             homes=null;
