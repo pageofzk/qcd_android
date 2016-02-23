@@ -19,6 +19,7 @@ package com.dap.club.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -193,6 +194,7 @@ public class NewsListFragment extends BaseListFragment implements SwipeRefreshLa
                         detail = avObjects.get(i).getString("content").substring(0,50) + "...";
                     }
                     home.setDetail(detail);
+                    home.setType(avObjects.get(i).getString("doc_type"));
                     home.setGood(avObjects.get(i).getNumber("good").intValue());
                     home.setUrl(avObjects.get(i).getJSONObject("pic_left").optString("url"));
                     home.setInfos(avObjects.get(i));
@@ -206,6 +208,7 @@ public class NewsListFragment extends BaseListFragment implements SwipeRefreshLa
                 public void run() {
                     refreshLayout.setRefreshing(false);
                     adapter.setmData(homes);
+
                 }
             });
         }
@@ -278,6 +281,13 @@ public class NewsListFragment extends BaseListFragment implements SwipeRefreshLa
             pageNum=0;
             homes=null;
             load();
+        }
+    }
+    @Override
+    public void toTop() {
+        DapLog.e("toTop");
+        if (this.isResumed()) {
+            recyclerView.setAdapter(adapter);
         }
     }
 }

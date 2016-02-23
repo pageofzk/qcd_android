@@ -225,7 +225,7 @@ public class AllListFragment extends BaseListFragment implements SwipeRefreshLay
         recyclerView.setItemAnimator(animator);
 
         recyclerView.setAdapter(adapter);
-        recyclerView.setVerticalScrollBarEnabled(false);
+        recyclerView.setVerticalScrollBarEnabled(true);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -282,6 +282,14 @@ public class AllListFragment extends BaseListFragment implements SwipeRefreshLay
             pageNum=0;
             homes=null;
             load();
+        }
+    }
+
+    @Override
+    public void toTop() {
+        DapLog.e("toTop");
+        if (this.isResumed()) {
+            recyclerView.setAdapter(adapter);
         }
     }
 }

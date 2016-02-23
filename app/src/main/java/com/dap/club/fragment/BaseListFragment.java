@@ -26,4 +26,6 @@ public class BaseListFragment extends Fragment{
 
     public void clearSearch(){}
 
+    public void toTop() {
+    }
 }

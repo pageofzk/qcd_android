@@ -194,6 +194,7 @@ public class BuyListFragment extends BaseListFragment implements SwipeRefreshLay
                     home.setDetail(detail);
                     home.setGood(avObjects.get(i).getNumber("good").intValue());
                     home.setTitle(avObjects.get(i).getString("title"));
+                    home.setType(avObjects.get(i).getString("doc_type"));
                     home.setUrl(avObjects.get(i).getJSONObject("pic_left").optString("url"));
                     home.setInfos(avObjects.get(i));
                 } catch (Exception e) {
@@ -276,6 +277,13 @@ public class BuyListFragment extends BaseListFragment implements SwipeRefreshLay
             pageNum=0;
             homes=null;
             load();
+        }
+    }
+    @Override
+    public void toTop() {
+        DapLog.e("toTop");
+        if (this.isResumed()) {
+            recyclerView.setAdapter(adapter);
         }
     }
 }

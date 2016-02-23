@@ -2,7 +2,9 @@ package com.dap.club.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +19,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.dap.club.R;
 import com.dap.club.fragment.BaseListFragment;
@@ -64,9 +67,19 @@ public class MainActivity extends AppCompatActivity implements
 //            }
 //        });
 
+
         mTabLayout= (TabLayout) findViewById(R.id.tabs);
         mTabLayout.setupWithViewPager(mViewPager);
 
+        // 回到顶部跳转
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DapLog.e("click fab");
+                adapter.toTop();
+            }
+        });
     }
 
 
@@ -182,6 +195,12 @@ public class MainActivity extends AppCompatActivity implements
             }
         }
 
+        public void toTop() {
+            for (BaseListFragment fragment:mFragments) {
+                fragment.toTop();
+            }
+        }
+
         public void addFragment(BaseListFragment fragment, String title) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
@@ -202,5 +221,6 @@ public class MainActivity extends AppCompatActivity implements
         public CharSequence getPageTitle(int position) {
             return mFragmentTitles.get(position);
         }
+
     }
 }

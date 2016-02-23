@@ -276,4 +276,11 @@ public class LibsListFragment extends BaseListFragment implements SwipeRefreshLa
             load();
         }
     }
+    @Override
+    public void toTop() {
+        DapLog.e("toTop");
+        if (this.isResumed()) {
+            recyclerView.setAdapter(adapter);
+        }
+    }
 }
