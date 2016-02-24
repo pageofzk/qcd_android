@@ -28,15 +28,15 @@ public class Cheeses {
         switch (RANDOM.nextInt(5)) {
             default:
             case 0:
-                return R.drawable.cheese_1;
+                return R.drawable.many;
             case 1:
-                return R.drawable.cheese_2;
+                return R.drawable.sony;
             case 2:
-                return R.drawable.cheese_3;
+                return R.drawable.canon;
             case 3:
-                return R.drawable.cheese_4;
+                return R.drawable.nikon;
             case 4:
-                return R.drawable.cheese_5;
+                return R.drawable.fuji;
         }
     }
 

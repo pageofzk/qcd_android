@@ -23,7 +23,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -69,7 +68,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (detail == null) {
             return;
         }
@@ -88,7 +87,7 @@ public class DetailActivity extends AppCompatActivity {
         //设置字体大小
 //        settings.setTextSize(WebSettings.TextSize.LARGEST);
         //为图片添加放大缩小功能
-//        settings.setSupportZoom(true); // 可以缩放
+        settings.setSupportZoom(true); // 可以缩放
 //        settings.setBuiltInZoomControls(true); // 显示放大缩小 controler
 //        mViewPager.loadUrl(detail.getUrl());
 //        mViewPager.loadUrl("http://www.qiongsandai.com");

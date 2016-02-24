@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,11 +21,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.dap.club.R;
+import com.dap.club.fragment.AllListFragment;
 import com.dap.club.fragment.BaseListFragment;
 import com.dap.club.fragment.BuyListFragment;
 import com.dap.club.fragment.LibsListFragment;
 import com.dap.club.fragment.NewsListFragment;
-import com.dap.club.fragment.AllListFragment;
 import com.dap.club.util.DapLog;
 
 import java.util.ArrayList;
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements
     private DrawerLayout mDrawerLayout;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
+    private FloatingActionButton mFab;
     private Adapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +72,9 @@ public class MainActivity extends AppCompatActivity implements
         mTabLayout.setupWithViewPager(mViewPager);
 
         // 回到顶部跳转
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mFab= (FloatingActionButton) findViewById(R.id.fab);
+//        mFab.hide();
+        mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DapLog.e("click fab");
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         if (menuItem.getItemId() == R.id.nav_feedback) {
-                            Intent intent = new Intent(MainActivity.this, CheeseDetailActivity.class);
+                            Intent intent = new Intent(MainActivity.this, FeedbackActivity.class);
                             startActivity(intent);
                         }
                         if (menuItem.getItemId() == R.id.nav_about) {
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
         // 为该SearchView组件设置事件监听器
         searchView.setOnQueryTextListener(this);
+//        searchView.setSubmitButtonEnabled(true);//是否显示确认搜索按钮
         searchView.setQueryHint("搜索");
 
         MenuItemCompat.setOnActionExpandListener(menuItem, new MenuItemCompat.OnActionExpandListener() {//设置打开关闭动作监听
@@ -197,7 +199,8 @@ public class MainActivity extends AppCompatActivity implements
 
         public void toTop() {
             for (BaseListFragment fragment:mFragments) {
-                fragment.toTop();
+                if(fragment != null && fragment.isResumed() && fragment.isMenuVisible())
+                    fragment.toTop();
             }
         }
 

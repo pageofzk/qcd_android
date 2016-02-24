@@ -19,17 +19,20 @@ package com.dap.club.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
+
 import com.bumptech.glide.Glide;
 import com.dap.club.R;
 import com.dap.club.data.Cheeses;
 
 public class CheeseDetailActivity extends AppCompatActivity {
 
-    public static final String EXTRA_NAME = "cheese_name";
+    public static final String EXTRA_NAME = "器材党";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,16 @@ public class CheeseDetailActivity extends AppCompatActivity {
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.feed);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CheeseDetailActivity.this, FeedbackActivity.class);
+                startActivity(intent);
+            }
+        });
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -57,7 +69,7 @@ public class CheeseDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menue_detail, menu);
+//        getMenuInflater().inflate(R.menu.menue_detail, menu);
         return true;
     }
 }

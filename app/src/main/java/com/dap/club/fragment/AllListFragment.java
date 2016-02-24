@@ -124,7 +124,7 @@ public class AllListFragment extends BaseListFragment implements SwipeRefreshLay
     private boolean isLoading;
 
     private void load() {
-        DapLog.e("searchQuery:" + searchQuery + isLoading + refreshLayout.isRefreshing());
+        DapLog.e("load:" + searchQuery + isLoading + refreshLayout.isRefreshing());
         if (isLoading) {
             return;
         }
@@ -175,7 +175,6 @@ public class AllListFragment extends BaseListFragment implements SwipeRefreshLay
                 });
             }
         });
-
     }
 
     private List<Home> homes;
@@ -243,6 +242,12 @@ public class AllListFragment extends BaseListFragment implements SwipeRefreshLay
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                Worker.postMain(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                });
                 //dx用来判断横向滑动方向，dy用来判断纵向滑动方向
                 if(dy > 0){
                     //大于0表示，正在向右滚动
@@ -260,6 +265,7 @@ public class AllListFragment extends BaseListFragment implements SwipeRefreshLay
     public void onRefresh() {
         pageNum=0;
         homes=null;
+        DapLog.e("refresh");
         load();
     }
 

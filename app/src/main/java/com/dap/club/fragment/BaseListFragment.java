@@ -28,4 +28,5 @@ public class BaseListFragment extends Fragment{
 
     public void toTop() {
     }
+
 }

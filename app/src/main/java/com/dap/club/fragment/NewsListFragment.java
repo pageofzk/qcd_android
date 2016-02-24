@@ -19,7 +19,6 @@ package com.dap.club.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -242,6 +241,12 @@ public class NewsListFragment extends BaseListFragment implements SwipeRefreshLa
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                Worker.postMain(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                });
                 //dx用来判断横向滑动方向，dy用来判断纵向滑动方向
                 if(dy > 0){
                     //大于0表示，正在向右滚动

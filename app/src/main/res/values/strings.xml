@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">器材党</string>
     <string name="action_settings">Settings</string>
-    <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
-        cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
-        bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
-        cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
-        the big cheese.</string>
+    <string name="string_about">我们爱摄影、爱器材，我们是骄傲的器材党！</string>
+    <string name="string_contact">联系邮箱：info@qicaidang.cn</string>
     <string name="checkin">Checkin</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_feedback">反馈</string>

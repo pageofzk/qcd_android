@@ -13,6 +13,8 @@ import android.view.View;
 public class PhoneUtil {
     private static boolean deviceDataInited = false;
 
+    private static int indexOfFragment = 0;
+
     private static float displayMetricsDensity;
     private static int displayMetricsWidthPixels;
     private static int displayMetricsHeightPixels;
