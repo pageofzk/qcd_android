@@ -17,20 +17,26 @@
 package com.dap.club.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.avos.avoscloud.AVObject;
 import com.dap.club.R;
+import com.dap.club.data.Cheeses;
 import com.dap.club.data.Detail;
 import com.dap.club.util.DapLog;
+
+import java.io.File;
 
 public class DetailActivity extends AppCompatActivity {
     private WebView mViewPager;
@@ -65,6 +71,7 @@ public class DetailActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
+
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,15 +95,17 @@ public class DetailActivity extends AppCompatActivity {
 //        settings.setTextSize(WebSettings.TextSize.LARGEST);
         //为图片添加放大缩小功能
         settings.setSupportZoom(true); // 可以缩放
-//        settings.setBuiltInZoomControls(true); // 显示放大缩小 controler
+        settings.setBuiltInZoomControls(true); // 显示放大缩小 controler
 //        mViewPager.loadUrl(detail.getUrl());
 //        mViewPager.loadUrl("http://www.qiongsandai.com");
 //        mViewPager.loadUrl("http://www.angularjs.cn/A2qy");
 //        mViewPager.loadUrl("http://qiongsandai.com/post.html?id=56bffcf132132c0052b37471");
         if ("lib".equals(detail.getType())) {
             mViewPager.loadUrl("http://qicaidang.cn/device/" + detail.getId());
+            detail.setUrl("http://qicaidang.cn/device/" + detail.getId());
         } else {
             mViewPager.loadUrl("http://qicaidang.cn/content/" + detail.getId());
+            detail.setUrl("http://qicaidang.cn/content/" + detail.getId());
         }
 //        mViewPager.loadData(detail.getHtml(), "text/html; charset=UTF-8", null);
 
@@ -116,9 +125,8 @@ public class DetailActivity extends AppCompatActivity {
 //        });
     }
 
-        private void JsonToObj(AVObject avObject) {
+    private void JsonToObj(AVObject avObject) {
         if (null != avObject) {
-            DapLog.e(avObject.toString());
             Detail d = new Detail();
             try {
                 d.setId(avObject.getObjectId());
@@ -130,7 +138,6 @@ public class DetailActivity extends AppCompatActivity {
                     d.setImg_url(avObject.getJSONObject("pic_left").optString("url"));
                     d.setBuy_url(avObject.getString("buy_url"));
                     d.setType(avObject.getString("doc_type"));
-                    d.setHtml(genPostHtml(avObject));
                     d.setUrl("http://www.qiongsandai.com/post.html?id=" + avObject.getObjectId());
                 }
                 if ("Lib".equals(avObject.getClassName())) {
@@ -138,7 +145,6 @@ public class DetailActivity extends AppCompatActivity {
                     d.setDetail(avObject.getString("short_info"));
                     d.setImg_url(avObject.getJSONObject("pic_file").optString("url"));
                     d.setType("lib");
-                    d.setHtml(genLibHtml(avObject));
                     d.setUrl("http://www.qiongsandai.com/qicai.html?id=" + avObject.getObjectId());
                 }
             } catch (Exception e) {
@@ -146,82 +152,6 @@ public class DetailActivity extends AppCompatActivity {
             }
             detail=d;
         }
-    }
-
-
-    private final String yqfCode = "<script type='text/javascript'>\n" +
-            " var _jjl = new Date().toDateString().replace(/\\s/g, '') + new Date().toTimeString().replace(/:\\d{2}:\\d{2}\\sUTC[+]\\d{4}$/g, '');\n" +
-            " document.write(unescape(\"%3Cscript src='http://p.yiqifa.com/js/juejinlian.js' type='text/javascript'%3E%3C/script%3E\"));\n" +
-            " document.write(unescape(\"%3Cscript src='http://p.yiqifa.com/jj?_jjl.js' type='text/javascript'%3E%3C/script%3E\"));\n" +
-            " document.write(unescape(\"%3Cscript src='http://p.yiqifa.com/js/md.js' type='text/javascript'%3E%3C/script%3E\"));\n" +
-            "</script> \n" +
-            "<script type='text/javascript'>\n" +
-            "try{ \n" +
-            " var siteId = 822080;\n" +
-            " document.write(unescape(\"%3Cscript src='http://p.yiqifa.com/jj?sid=\" + siteId + \"&_jjl.js' type='text/javascript'%3E%3C/script%3E\"));\n" +
-            " var jjl = JueJinLian._init(); \n" +
-            " jjl._addWid(siteId);\n" +
-            " jjl._addE(\"\");\n" +
-            " jjl._addScope(0);\n" +
-            " jjl._run(); \n" +
-            "}catch(e){} \n" +
-            "</script>";
-    private String genPostHtml(AVObject avObject) {
-        String title = avObject.getString("title");
-        String id = avObject.getObjectId();
-        // 多说code
-        String dsCode = " <!-- 多说评论框 start -->\n" +
-                "\t<div class=\"ds-thread\" data-thread-key=\"" +
-                id +
-                "\" data-title=\"" +
-                title +
-                "\" data-url=\"\"></div>\n" +
-                "<!-- 多说评论框 end -->\n" +
-                "<!-- 多说公共JS代码 start (一个网页只需插入一次) -->\n" +
-                "<script type=\"text/javascript\">\n" +
-                "var duoshuoQuery = {short_name:\"qsd\"};\n" +
-                "\t(function() {\n" +
-                "\t\tvar ds = document.createElement('script');\n" +
-                "\t\tds.type = 'text/javascript';ds.async = true;\n" +
-                "\t\tds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';\n" +
-                "\t\tds.charset = 'UTF-8';\n" +
-                "\t\t(document.getElementsByTagName('head')[0] \n" +
-                "\t\t || document.getElementsByTagName('body')[0]).appendChild(ds);\n" +
-                "\t})();\n" +
-                "\t</script>\n" +
-                "<!-- 多说公共JS代码 end -->\n";
-//        DapLog.e(dsCode + avObject.getString("content_html"));
-//        return title + avObject.getString("content_html") + dsCode;
-            return avObject.getString("content_html").replace("<script","<!--<script").replace("/script>","/script>-->") + dsCode;
-    }
-
-    private String genLibHtml(AVObject avObject) {
-        String title = avObject.getString("brand") + avObject.getString("name") + avObject.getString("type");
-        String id = avObject.getObjectId();
-        // 多说code
-        String dsCode = "<!-- 多说评论框 start -->\n" +
-                "\t<div class=\"ds-thread\" data-thread-key=\"" +
-                id +
-                "\" data-title=\"" +
-                title +
-                "\" data-url=\"\"></div>\n" +
-                "<!-- 多说评论框 end -->\n" +
-                "<!-- 多说公共JS代码 start (一个网页只需插入一次) -->\n" +
-                "<script type=\"text/javascript\">\n" +
-                "var duoshuoQuery = {short_name:\"qsd\"};\n" +
-                "\t(function() {\n" +
-                "\t\tvar ds = document.createElement('script');\n" +
-                "\t\tds.type = 'text/javascript';ds.async = true;\n" +
-                "\t\tds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';\n" +
-                "\t\tds.charset = 'UTF-8';\n" +
-                "\t\t(document.getElementsByTagName('head')[0] \n" +
-                "\t\t || document.getElementsByTagName('body')[0]).appendChild(ds);\n" +
-                "\t})();\n" +
-                "\t</script>\n" +
-                "<!-- 多说公共JS代码 end -->\n";
-//        return title + "\n" + avObject.getJSONObject("infos").toString() + dsCode;
-//                DapLog.e(avObject.getJSONObject("infos").toString());
-                return "\n" + avObject.getJSONObject("infos").toString() + dsCode;
     }
 
     private void init() {
@@ -235,5 +165,26 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menue_detail, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        DapLog.e("menu" + item.getItemId());
+        switch (item.getItemId()) {
+            case R.id.action_open:
+                Uri weburi = Uri.parse(detail.getUrl());
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, weburi);
+                startActivity(webIntent);
+            case R.id.action_share:
+                Intent shareIntent = new Intent();
+
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "器材党-"+detail.getTitle() + "-" +detail.getUrl());
+                shareIntent.setType("text/plain");
+                //设置分享列表的标题，并且每次都显示分享列表
+                startActivity(Intent.createChooser(shareIntent, "分享到"));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

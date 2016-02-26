@@ -8,6 +8,7 @@
     <string name="menu_feedback">反馈</string>
     <string name="menu_about">关于</string>
     <string name="menu_forward">分享</string>
+    <string name="menu_open">浏览器打开</string>
     <string name="action_search">Search</string>
     <string name="frs_item_abstract_more_text">查看全文...</string>
 </resources>

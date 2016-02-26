@@ -237,7 +237,6 @@ public class AllListFragment extends BaseListFragment implements SwipeRefreshLay
                     //加载更多功能的代码
                     load();
                 }
-
             }
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
