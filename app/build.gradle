@@ -42,5 +42,7 @@ dependencies {
 
     //avoscloud-sdk 为 LeanCloud基础包
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
+    //友盟
+    compile 'com.umeng.analytics:analytics:latest.integration'
 
 }
