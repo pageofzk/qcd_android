@@ -30,7 +30,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.avos.avoscloud.AVObject;
-import com.dap.club.R;
+import com.dap.qcd.R;
 import com.dap.qcd.data.Detail;
 import com.dap.qcd.util.DapLog;
 import com.umeng.analytics.MobclickAgent;

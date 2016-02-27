@@ -27,7 +27,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.dap.club.R;
+import com.dap.qcd.R;
 import com.dap.qcd.data.Cheeses;
 import com.umeng.analytics.MobclickAgent;
 

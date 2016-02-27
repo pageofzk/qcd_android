@@ -16,7 +16,7 @@
 
 package com.dap.qcd.data;
 
-import com.dap.club.R;
+import com.dap.qcd.R;
 
 import java.util.Random;
 
@@ -25,17 +25,15 @@ public class Cheeses {
     private static final Random RANDOM = new Random();
 
     public static int getRandomCheeseDrawable() {
-        switch (RANDOM.nextInt(5)) {
+        switch (RANDOM.nextInt(4)) {
             default:
             case 0:
                 return R.drawable.many;
             case 1:
-                return R.drawable.sony;
-            case 2:
                 return R.drawable.canon;
-            case 3:
+            case 2:
                 return R.drawable.nikon;
-            case 4:
+            case 3:
                 return R.drawable.fuji;
         }
     }

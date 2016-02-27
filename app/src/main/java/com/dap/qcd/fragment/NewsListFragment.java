@@ -33,7 +33,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.SaveCallback;
-import com.dap.club.R;
+import com.dap.qcd.R;
 import com.dap.qcd.activity.DetailActivity;
 import com.dap.qcd.adapter.HomeAdapter;
 import com.dap.qcd.data.Home;

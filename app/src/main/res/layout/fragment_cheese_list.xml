@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:id="@+id/fragment"
                 android:layout_height="match_parent">
-    <com.dap.club.view.refresh.SwipeRefreshLayout
+    <com.dap.qcd.view.refresh.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:id="@+id/refreshLayout"
             android:layout_height="match_parent">
@@ -29,5 +29,5 @@
                 android:fadeScrollbars="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-    </com.dap.club.view.refresh.SwipeRefreshLayout>
+    </com.dap.qcd.view.refresh.SwipeRefreshLayout>
 </RelativeLayout>

@@ -26,7 +26,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.dap.club.R;
+import com.dap.qcd.R;
 import com.umeng.analytics.MobclickAgent;
 
 public class FeedbackActivity extends AppCompatActivity {

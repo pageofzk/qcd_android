@@ -30,7 +30,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
-import com.dap.club.R;
+import com.dap.qcd.R;
 import com.dap.qcd.adapter.HomeAdapter;
 import com.dap.qcd.data.Home;
 import com.dap.qcd.util.DapLog;

@@ -20,7 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.dap.club.R;
+import com.dap.qcd.R;
 import com.dap.qcd.fragment.AllListFragment;
 import com.dap.qcd.fragment.BaseListFragment;
 import com.dap.qcd.fragment.BuyListFragment;

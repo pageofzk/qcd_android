@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.dap.club.R;
+import com.dap.qcd.R;
 import com.dap.qcd.data.Home;
 import com.dap.qcd.util.DapLog;
 import com.dap.qcd.view.DapDraweeView;
